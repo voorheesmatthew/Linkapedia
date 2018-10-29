@@ -2,7 +2,7 @@ Title: Linkapedia
 
 * Background and Overview
     * Motivation:
-    It's 1:30am, my friend and I are at a bar, we haven't even been drinking. Instead, both our phones are about to die because we've been incessantly clicking on the wikipedia (hereby referred to as "wiki") links trying to see who can get from one spot to another in the fewest amount of clicks. Once we get to the goal page, we go back into our history and count the links we visited. Wouldn't it be nice if there was a more dynamic way to visualize what we were doing?
+    It's 1:30am, my friend and I are at a bar, we haven't even been drinking. Instead, both our phones are about to die because we've been incessantly clicking on wikipedia (hereby referred to as "wiki") links trying to see who can get from one spot to another in the fewest amount of clicks. Once we get to the goal page, we go back into our history and count the links we visited. Wouldn't it be nice if there was a more dynamic way to visualize what we were doing?
     * High-level overview:
     Linkapedia will start with a single page from wiki, represented by a dot. You click on that dot, and you get all the dots of pages with links that were on your parent dot. Eventually, you have a flower of wiki links that highlight the path from your original page to the dot your mouse hovers. When you get the page, you were looking for its game over and a summary of your journey (including the number of clicks and shortest path).
 
