@@ -1,0 +1,29 @@
+{
+  "name": "linkapedia",
+  "version": "1.0.0",
+  "description": "Title: Linkapedia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --mode development --open",
+    "start": "webpack -p && node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voorheesmatthew/Linkapedia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/voorheesmatthew/Linkapedia/issues"
+  },
+  "homepage": "https://github.com/voorheesmatthew/Linkapedia#readme",
+  "dependencies": {
+    "css-loader": "^1.0.1",
+    "script-loader": "^0.7.2",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.23.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

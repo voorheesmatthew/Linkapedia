@@ -17,8 +17,9 @@ Title: Linkapedia
         * Use D3 to manage dots behavior and data
     * MediaWiki action API
         * The API to get a list of links on any given page, as well as backlinks to pages
-    * Node Backend (Pending approval)
-        * Project might require the use of an external API inaccessible from a browser.
+* WireFrame:
+
+![Alt text](WireFrame.png?raw=true "Wireframe")
 
 * Implementation Timeline
     * Monday: Write the proposal, get a review from a coach. Get a better overview of scope.
