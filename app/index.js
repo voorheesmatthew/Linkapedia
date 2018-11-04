@@ -3,8 +3,9 @@
  */
 // Load application styles
 
-import 'styles/index.scss';
-import startNode from './start_node';
+// import 'styles/index.scss';
+// import 'styles/index.css';
+// import startNode from './start_node';
 
 document.addEventListener("DOMContentLoaded", () => {
   

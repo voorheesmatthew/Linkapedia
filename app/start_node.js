@@ -207,7 +207,9 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
         if (document.getElementById(link.page)) {
           let winner = document.getElementById(link.page);
           winner.setAttribute("r", 15);
-          winner.__data__.radius = 15;
+          if (winner.__data__) {
+            winner.__data__.radius = 15;
+          }
         } else {
           let winnerCircle = [{ page: link.page, origin: startName, color: assignedColor, x: xStart, y: yStart, clicked: false, radius: 15 }];
           allNodes = allNodes.concat(winnerCircle);
@@ -272,4 +274,4 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
   }
 }
 
-module.exports = startNode;
+// module.exports = startNode;
