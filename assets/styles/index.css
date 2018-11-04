@@ -1,0 +1,222 @@
+/* // Apply a natural box layout model to all elements
+// but allowing components to change
+// http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+// * {border: .5px solid purple;} */
+
+* {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
+
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: scroll;
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.textbox {
+  position: absolute;
+  text-align: center;
+  border-radius: 3px;
+  width: auto;
+  height: auto;
+  padding: 6px;
+  background: rgb(238, 168, 168);
+}
+
+.nodes:hover {
+  cursor: pointer;
+}
+
+#middle {
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid black;
+  margin-right: 2px;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
+.right-side {
+  display: flex;
+  flex-direction: row;
+  min-width: 190px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.right-side a {
+  text-decoration: none;
+}
+
+
+
+/* // filter */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 51px;
+  /* // height: 34px; */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(114, 114, 114);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  width: 15px;
+  height: 76%;
+  left: 5px;
+  bottom: 2.55px;
+  background-color: aliceblue;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: rgb(131, 252, 120)
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px rgb(3, 128, 11);
+}
+
+input:checked + .slider::before {
+  -webkit-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: row;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputs input {
+  margin: 5px;
+  border-radius: 2px;
+  border: 1px solid rgb(0, 0, 0);
+  width: 150px;
+  height: 22px;
+}
+
+.filter-start {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.switch-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.switch-container label {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 5px;
+}
+
+.switch-container div {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.filter-start button {
+  margin-top: 4px;
+  background-color: rgb(253, 23, 144);
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 2px;
+
+}
+
+.filter-start button:hover {
+  background-color: rgb(203, 25, 120);
+  cursor: pointer;
+}
+
+.hide-btn {
+  display: none
+}
+
+.link-btn {
+  text-transform: capitalize;
+  margin-right: 2px;  
+  /* // background-color: rgb(253, 23, 144); */
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.key-box-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 80px;
+  margin-left: 20px;
+  padding: 5px;
+  width: 220px;
+  min-height: 80px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.084);
+  z-index: 2000;
+}
