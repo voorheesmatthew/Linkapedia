@@ -22,7 +22,7 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
       middleSection.appendChild(errorText);
       setTimeout(() => {
           middleSection.removeChild(errorText);
-        middleSection.appendChild(document.createTextNode("You're exploring Linkapedia, pop those links! Click a key to the left to go to the page."));
+        middleSection.appendChild(document.createTextNode("You're exploring Linkapedia! Pop those links or click any key (to the left) to go to that page!"));
       }, 5000);
     } 
   } else if (!doc && prevNodes.length === 0) { 
@@ -204,11 +204,53 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
         let winningAlert = document.createTextNode(`Congrats! You found the ${gameInput} page! Keep exploring or start over!`);
         middleSection.removeChild(middleSection.firstChild);
         middleSection.appendChild(winningAlert);
-        let winner = document.getElementById(link.page);
-        winner.setAttribute("r", 15);
-        winner.__data__.radius = 15;
+        if (document.getElementById(link.page)) {
+          let winner = document.getElementById(link.page);
+          winner.setAttribute("r", 15);
+          winner.__data__.radius = 15;
+        } else {
+          let winnerCircle = [{ page: link.page, origin: startName, color: assignedColor, x: xStart, y: yStart, clicked: false, radius: 15 }];
+          allNodes = allNodes.concat(winnerCircle);
+          circles = svg.selectAll()
+            .data(allNodes)
+            .enter().append("circle")
+            .attr("class", "nodes")
+            .attr("id", function (d) {
+              return d.page;
+            })
+            .attr("r", function (d) {
+              return d.radius;
+            })
+            .attr("fill", function (d) {
+              return d.color;
+            })
+            .attr("cx", function (d) {
+              return d.x;
+            })
+            .attr("cy", function (d) {
+              return d.y;
+            })
+            .text(function (d) { return d.page; })
+            .on('mouseover', mouseover)
+            .on('mousemove', function (d) {
+              return mousemove(d)
+            })
+            .on('mouseout', mouseout)
+            .on('click', function (d) {
+              d.clicked = true;
+              d.radius = d.radius / 2;
+              if (gameInput === null) {
+                gameInput = "xzc";
+              }
+              startNode(d.page, gameInput, allNodes, d.x, d.y);
+            });
+          let winner = document.getElementById(link.page);
+          winner.setAttribute("r", 15);
+          winner.__data__.radius = 15;
+        }
         middleSection.style.backgroundColor = "green";
         middleSection.style.color = "white";
+        window.scrollTo(0,0)
       }
     });
   }
