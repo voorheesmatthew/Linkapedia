@@ -8,18 +8,38 @@
     <script src="https://unpkg.com/wtf_wikipedia@latest/builds/wtf_wikipedia.min.js"></script>
     <!-- D3 -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+        function openNewTab(url) {
+            return window.open(url);
+        }
+    </script>
 </head>
 <body>
     <div class="content">
-        <div class="top-bar">
-            <input type="text" id="si">
-            <label class="switch">
-                <input id="filter" type="checkbox">
-                <span class="slider round"></span>
-            </label>
-            Filter
-            <button id="start">Start</button>
+        <div id="top-bar" class="top-bar">
+            <div class="left-side">
+                <div class="inputs">
+                    <input type="text" id="si" placeholder="Enter a Wikipedia Page">
+                    <input type="text" id="ei" placeholder="Goal Page (optional)">
+                </div>
+                <div class="filter-start">
+                    <div class="switch-container">
+                    <label class="switch">
+                        <input id="filter" type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                    <div>Filter</div>
+                    </div>
+                    <button id="start">Begin</button>
+                    <button id="reset" class="hide-btn">Reset</button>
+                </div>
+            </div>
+            <div id="middle"></div>
+            <div class="right-side">
+                <div>Links to Git and LinkedIn</div>
+            </div>
         </div>
+        <div id="key-box" class="key-box-container"><div>Key:</div></div>
         <div id="wikiverse" class="svg-container">
     </div>
 </body>
