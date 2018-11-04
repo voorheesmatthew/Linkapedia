@@ -1,17 +1,40 @@
 // import wikiLinks from './wiki_links';
 const colors = ["#fd1790","#8df84d","#c33dd6","#cbe211","#f37ef6","#28de66","#fc3b39","#45facb","#c85286","#1b8f43","#7f8c10","#4eb5f8","#5c82a9","#fa9942","#93e3f4","#d25244","#aff1a3","#f7c6eb","#ac6e52","#f8d9a1","#845c00"];
 
-async function startNode(startName, prevNodes = [], xStart = 100, yStart = 100) {
+async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 100, yStart = 100) {
   
   let doc = await wtf.fetch(startName, "en");
-  if (!doc) {
-    let noPageError = document.getElementById("middle")
-    let errorText = document.createTextNode(`Sorry, ${startName} not found. Check your spelling!`);
-    noPageError.appendChild(errorText);
-    setTimeout(() => {
-      noPageError.removeChild(errorText);
-    }, 5000);
+  let gameDoc = await wtf.fetch(gameInput, "en");
+  if (gameInput === "xzc") {
+    gameInput = null;
   }
+  let middleSection = document.getElementById("middle");
+  //Error checking
+  if (gameInput && !gameDoc && prevNodes.length === 0) {
+    if (!doc && !gameDoc) {
+      let errorText = document.createTextNode(`Sorry, ${startName} and ${gameInput} not found. Check your spelling and try again!`);
+      middleSection.removeChild(middleSection.firstChild);
+      middleSection.appendChild(errorText);
+      
+    } else if (doc && !gameDoc) {
+      let errorText = document.createTextNode(`Sorry, destination page ${gameInput} not found. You'll just be exploring!`);
+      middleSection.removeChild(middleSection.firstChild);
+      middleSection.appendChild(errorText);
+      setTimeout(() => {
+          middleSection.removeChild(errorText);
+        middleSection.appendChild(document.createTextNode("You're exploring Linkapedia, pop those links! Click a key to the left to go to the page."));
+      }, 5000);
+    } 
+  } else if (!doc && prevNodes.length === 0) { 
+    let errorText = document.createTextNode(`Sorry, wikipedia page ${startName} not found. Check your spelling and try again!`);
+    middleSection.removeChild(middleSection.firstChild);
+    middleSection.appendChild(errorText);
+    
+  } else {
+    document.querySelector("#si").value = "";
+    document.querySelector("#gi").value = "";
+  }
+  //assign colors
   let assignedColor;
   if (colors.length) {
     assignedColor = colors.shift();
@@ -19,11 +42,11 @@ async function startNode(startName, prevNodes = [], xStart = 100, yStart = 100) 
   } else {
     assignedColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
   }
+
+  //keep list of previous page names
   let prevPages = prevNodes.map(el => el.page);
-
   
-
-
+  // Refreshes the page with new nodes
   if (document.getElementById("textbox")) {
     document.getElementById("textbox").remove();
   }
@@ -46,6 +69,8 @@ async function startNode(startName, prevNodes = [], xStart = 100, yStart = 100) 
       pageBtn.appendChild(t)
       document.getElementById("key-box").append(pageBtn);
     }
+
+    
     
  
     let filter = document.querySelector("#filter").checked;
@@ -96,7 +121,6 @@ async function startNode(startName, prevNodes = [], xStart = 100, yStart = 100) 
     
 
     startNodeLinks = startNodeLinks.filter(el => el.page && !prevPages.includes(el.page))
-    console.log(startNodeLinks)
     
 
     allNodes = startNodeLinks.concat(prevNodes)
@@ -124,6 +148,9 @@ async function startNode(startName, prevNodes = [], xStart = 100, yStart = 100) 
     .data(allNodes)
     .enter().append("circle")
     .attr("class", "nodes")
+    .attr("id", function(d) {
+      return d.page;
+    })
     .attr("r", function (d) {
         return d.radius;
     })
@@ -146,26 +173,44 @@ async function startNode(startName, prevNodes = [], xStart = 100, yStart = 100) 
     .on('click', function(d) {
       d.clicked = true;
       d.radius = d.radius/2;
-      startNode(d.page, allNodes, d.x, d.y)
+      if (gameInput === null) {
+        gameInput = "xzc";
+      }
+      startNode(d.page, gameInput, allNodes, d.x, d.y)
     })
 
   let div = d3.select("body").append("div")
     .attr("class", "textbox")
     .attr("id", "textbox")
-    .style("display", "none")
+    .style("display", "none");
 
   function mouseover() {
-    div.style("display", "inline")
+    div.style("display", "inline");
   }
 
   function mousemove(d) {
-    div.text(d.page) //"Page: " + d.origin + " || Link: " +
+    div.text(d.page) 
         .style("left", d3.event.pageX - 100 + "px")
         .style("top", d3.event.pageY - 50 + "px");
   }
 
   function mouseout() {
     div.style("display", "none");
+  }
+  //check if game won!
+  if (gameDoc) {
+    doc.links().forEach(link => {
+      if (link.page === gameDoc.title()) {
+        let winningAlert = document.createTextNode(`Congrats! You found the ${gameInput} page! Keep exploring or start over!`);
+        middleSection.removeChild(middleSection.firstChild);
+        middleSection.appendChild(winningAlert);
+        let winner = document.getElementById(link.page);
+        winner.setAttribute("r", 15);
+        winner.__data__.radius = 15;
+        middleSection.style.backgroundColor = "green";
+        middleSection.style.color = "white";
+      }
+    });
   }
   
   simulation.nodes(allNodes)
