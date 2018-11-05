@@ -18,7 +18,10 @@
     text-align: center;
     z-index: 50000;
     background-color: rgba(9, 9, 89, 0.797);
-    align-self: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     border-radius: 7px;
   }
 }
