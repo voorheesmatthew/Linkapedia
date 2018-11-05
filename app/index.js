@@ -12,8 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.querySelector("#start");
   const resetButton = document.querySelector("#reset");
   const topMiddle = document.querySelector("#middle");
-  topMiddle.appendChild(document.createTextNode(`Welcome to Linkapedia! Enter a Wikipage (input to the left) to explore. Add a goal page to play the game! Filter gives you only the most relavent links.`));
-  
+  topMiddle.appendChild(document.createTextNode(`Welcome to Linkapedia!`));
+  setTimeout(() => {
+    if (document.querySelector("#si").value.length === 0) {
+      topMiddle.removeChild(topMiddle.firstChild);
+      topMiddle.appendChild(document.createTextNode(`Enter a Wikipage (input to the left) to explore. Add a goal page to play the game! Filter gives you only the most relavent links.`));
+    }
+  }, 10000);
   startButton.addEventListener("click", () => {
     let startInput = document.querySelector("#si").value.toLowerCase();
     // credit to https://stackoverflow.com/questions/2332811/capitalize-words-in-string
@@ -34,6 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
       topMiddle.removeChild(topMiddle.firstChild);
       topMiddle.appendChild(document.createTextNode("You're exploring Linkapedia! Pop those links or click any key (to the left) to go to that page!"));
       startNode(startInput);
+    } else {
+      topMiddle.removeChild(topMiddle.firstChild);
+      topMiddle.appendChild(document.createTextNode(`Enter a Wikipage (input to the left) to explore. Add a goal page to play the game! Filter gives you only the most relavent links.`));
     }
   });
 
