@@ -10,8 +10,8 @@
   .show-blocker {
     position: absolute;
     padding: 10%;
-    width: 100vw;
-    height: 100vh;
+    width: 150vw;
+    height: 150vh;
     font-size: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
