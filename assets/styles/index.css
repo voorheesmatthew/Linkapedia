@@ -6,7 +6,7 @@
 * {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
 
 
-@media only screen and (orientation : portrait)  {
+@media only screen and (orientation: portrait)  {
   .show-blocker {
     position: absolute;
     padding-top: 30%;
@@ -18,7 +18,7 @@
     background-color: rgba(12, 12, 125, 0.605);
   }
 }
-@media only screen and (orientation : landscape)  {
+@media only screen and (orientation: landscape)  {
   .show-blocker {
     display: none;
   }
