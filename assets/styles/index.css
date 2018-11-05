@@ -18,6 +18,8 @@
     text-align: center;
     z-index: 50000;
     background-color: rgba(9, 9, 89, 0.797);
+    align-self: center;
+    border-radius: 7px;
   }
 }
 @media only screen and (min-width: 321px)  {
