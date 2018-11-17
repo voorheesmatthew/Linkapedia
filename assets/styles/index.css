@@ -78,7 +78,8 @@ html {
   top: 10px;
   left: 275px;
   right: 205px;
-  height: 60px;
+  min-height: 60px;
+  /* height: 60px; */
   z-index: 1;
   background-image: linear-gradient(to bottom right, rgb(0, 255, 0), rgba(255, 255, 0, 0.178));
 }
