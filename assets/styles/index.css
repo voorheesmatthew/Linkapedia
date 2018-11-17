@@ -6,12 +6,12 @@
 * {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif}
 
 
-@media only screen and (max-width: 320px)  {
+@media only screen and (max-width: 480px)  {
   .show-blocker {
-    position: absolute;
+    position: fixed;
     padding: 10%;
-    width: 150vw;
-    height: 150vh;
+    width: 100vw;
+    height: 100vh;
     font-size: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
@@ -25,7 +25,7 @@
     border-radius: 7px;
   }
 }
-@media only screen and (min-width: 321px)  {
+@media only screen and (min-width: 481px)  {
   .show-blocker {
     display: none;
   }
@@ -70,13 +70,17 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
   border-radius: 2px;
   border: 1px solid black;
-  margin-right: 2px;
-  margin-left: 2px;
   margin-bottom: 2px;
   text-align: center;
+  position: fixed;
+  top: 10px;
+  left: 275px;
+  right: 205px;
+  height: 60px;
+  z-index: 1;
+  background-image: linear-gradient(to bottom right, rgb(0, 255, 0), rgba(255, 255, 0, 0.178));
 }
 
 .right-side {
@@ -232,14 +236,14 @@ input:checked + .slider::before {
 }
 
 .key-box-container {
-  position: fixed;
-  top: 0;
+  position: sticky;
+  top: 5px;
   left: 0;
-  margin-top: 80px;
+  margin-top: 10px;
   margin-left: 20px;
   padding: 5px;
   width: 220px;
-  min-height: 80px;
+  min-height: 70px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: rgba(128, 128, 128, 0.084);

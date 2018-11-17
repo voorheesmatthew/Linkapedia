@@ -252,7 +252,6 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
         }
         middleSection.style.backgroundColor = "green";
         middleSection.style.color = "white";
-        window.scrollTo(0,0)
       }
     });
   }

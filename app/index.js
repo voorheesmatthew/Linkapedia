@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
       topMiddle.removeChild(topMiddle.firstChild);
       topMiddle.appendChild(document.createTextNode(`Enter a Wikipage (input to the left) to explore. Add a goal page to play the game! Filter gives you only the most relavent links.`));
     }
-  }, 30000);
+  }, 15000);
   startButton.addEventListener("click", () => {
     let startInput = document.querySelector("#si").value.toLowerCase();
     // credit to https://stackoverflow.com/questions/2332811/capitalize-words-in-string
