@@ -38,9 +38,9 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
   let assignedColor;
   if (colors.length) {
     assignedColor = colors.shift();
-    colors.push(assignedColor)
+    colors.push(assignedColor);
   } else {
-    assignedColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16)
+    assignedColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
   }
 
   //keep list of previous page names
@@ -59,14 +59,14 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
   let startNodeLinks = [];
   if (doc) {
     if (!document.getElementById(startName)) {
-      let pageBtn = document.createElement("button")
+      let pageBtn = document.createElement("button");
       pageBtn.setAttribute("class", "link-btn");
-      pageBtn.setAttribute("id", startName)
+      pageBtn.setAttribute("id", startName);
       pageBtn.setAttribute("onclick", `openNewTab('https://en.wikipedia.org/?curid=${doc.json().pageID}');`);
       // debugger
       pageBtn.style.backgroundColor = assignedColor;
       let t = document.createTextNode(startName);
-      pageBtn.appendChild(t)
+      pageBtn.appendChild(t);
       document.getElementById("key-box").append(pageBtn);
     }
 
@@ -80,7 +80,7 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
         .sections(0)
         .links()
         .map(l => ({
-          page: l.page,
+          page: l.data.page,
           origin: startName,
           color: assignedColor,
           x: xStart,
@@ -94,36 +94,36 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
           .sections(1)
           .links()
           .map(l => ({
-            page: l.page,
+            page: l.data.page,
             origin: startName,
             color: assignedColor,
             x: xStart,
             y: yStart,
             clicked: false,
             radius: 4
-          })))
+          })));
       } else {
         startNodeLinks = sectionOne;
       }
 
     } else {
       startNodeLinks = doc.links().map(l => ({ 
-        page: l.page, 
+        page: l.data.page, 
         origin: startName, 
         color: assignedColor,
         x: xStart,
         y: yStart,
         clicked: false,
         radius: 4
-      }))
+      }));
     }
   }
     
 
-    startNodeLinks = startNodeLinks.filter(el => el.page && !prevPages.includes(el.page))
+    startNodeLinks = startNodeLinks.filter(el => el.page && !prevPages.includes(el.page));
     
 
-    allNodes = startNodeLinks.concat(prevNodes)
+    allNodes = startNodeLinks.concat(prevNodes);
 
   let svg = d3
     .select("#wikiverse")
@@ -158,16 +158,15 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
       return d.color;
     })
     .attr("cx", function(d) {
-      // debugger
       return d.x;
     })
     .attr("cy", function(d) {
       return d.y;
-      })
+    })
     .text(function (d) { return d.page; })
     .on('mouseover', mouseover)
     .on('mousemove', function(d) {
-      return mousemove(d)
+      return mousemove(d);
     })
     .on('mouseout', mouseout)
     .on('click', function(d) {
@@ -176,8 +175,9 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
       if (gameInput === null) {
         gameInput = "xzc";
       }
-      startNode(d.page, gameInput, allNodes, d.x, d.y)
-    })
+      // debugger
+      startNode(d.page, gameInput, allNodes, d.x, d.y);
+    });
 
   let div = d3.select("body").append("div")
     .attr("class", "textbox")
@@ -235,7 +235,7 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
             .text(function (d) { return d.page; })
             .on('mouseover', mouseover)
             .on('mousemove', function (d) {
-              return mousemove(d)
+              return mousemove(d);
             })
             .on('mouseout', mouseout)
             .on('click', function (d) {
@@ -262,14 +262,13 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
   function ticked() {
     circles
       .attr("cx", function(d) {
-        // debugger
         // simulation
         return (d.x = Math.max(d.radius, Math.min(300 - d.radius, d.x))); //Width
       })
       .attr("cy", function(d) {
         // simulation.alpha(.01)
         return (d.y = Math.max(d.radius, Math.min(300 - d.radius, d.y)));
-      })
+      });
   }
 }
 
