@@ -63,7 +63,6 @@ async function startNode(startName, gameInput = "xzc", prevNodes = [], xStart = 
       pageBtn.setAttribute("class", "link-btn");
       pageBtn.setAttribute("id", startName);
       pageBtn.setAttribute("onclick", `openNewTab('https://en.wikipedia.org/?curid=${doc.json().pageID}');`);
-      // debugger
       pageBtn.style.backgroundColor = assignedColor;
       let t = document.createTextNode(startName);
       pageBtn.appendChild(t);
