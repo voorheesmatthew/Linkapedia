@@ -2,7 +2,7 @@
 ## A gamified data visualization of wikipedia links, with colorful, happy, dots.
 ### A Vanilla JS Project with D3
 
-![Alt Text](https://media.giphy.com/media/1wmbEYRZ0rjR79gD3g/giphy.gif)
+![Alt Text](https://media.giphy.com/media/dt6ao6vj3YU9mb8CJT/source.gif)
 
 ## Description
 [Linkapedia](https://www.linkapedia.app/) was inspired through many-a-nerdy-session of clicking wikilinks, trying to get from one page to the next. You start by typing a wikipage into the first input. If you want to explore, you're good to go, otherwise, you fill in the goal page input and click Begin. If the filter is off, you'll get tons of dots exploding out of the screen (sometimes too many), the filter limits the results to only links that are more relevant to the page. More dots explode out of the dot you click on revealing the links from each page. If you find your goal page a huge dot appears on the screen and you get a congrats from the info bar. Want to go again or just bored of the path you've choosen? Click resart and you're good to go for unlimited rounds!
@@ -20,7 +20,7 @@
 
 ...with a decrease in radius on the clicked dot to mimic a "squeezed out" status.
 
-![Alt Text](https://media.giphy.com/media/EEzGuKsh1Jewux0R8f/giphy.gif)
+![Alt Text](https://media.giphy.com/media/Mb3pUhxujyEKOMe3vy/source.gif)
 
 ```js
     .on('mouseout', mouseout)
