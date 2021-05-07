@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.1.0",
-    "lodash": "4.17.11"
+    "lodash": "4.17.21"
   },
   "devDependencies": {
     "@babel/core": "7.1.2",
